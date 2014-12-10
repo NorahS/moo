@@ -1,0 +1,18 @@
+{% extends "basic.html"%}
+ 
+
+{% block content%}
+<div>
+<form method = "post">
+Name:<input type="text" name ="Name"><br>
+collage: <input type ="text" name="School"><br>
+Instructor:<input type="text" name="Instructor"><br>
+Rate:<input type="text" name="Rate"><br>
+Platform:<input type="text" name="Platform"><br>
+<button>submit</button>
+<div>{{post}}</div>
+</form>
+</div>
+
+{% endblock%}
+
