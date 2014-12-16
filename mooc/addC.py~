@@ -14,11 +14,12 @@ class add(Handler.Handler):
 		date= self.request.get("Date")
 		img = self.request.get("img")
 
-		if not cached.cached(name):		
+		if  cached.cached(name) :		
 		#	course = coursesdb.Courses(key_name=name, Platform = platform,Name=name,School=course,Rate=int(rate),Instructor= instructor, Level = level, Subject=subject,"""Date=date,""" Img=img)
-			course = coursesdb.Courses(key_name=name, Platform = platform,Name=name,School=course,Rate=int(rate))			course.put()
-			self.render("add_form.html ",post="Done")
+			course = coursesdb.Courses(key_name=name, Platform = platform,Name=name,School=course,Rate=int(rate))		
+			course.put()
+			cached.cache(name,course)
+			self.render("add_form.html",post="Done")
 		else:
-			cached.cache(name, course)
-			self.render("add_form.html", post ="Already exict")
+			self.render("add_form.html", post =cached.cached(name))
 		

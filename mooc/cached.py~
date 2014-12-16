@@ -6,5 +6,5 @@ def cached(name):
 def cache (name,p):
 	memcache.set(name, p)
 def lookup(name):
-	return memcache.get(name)
+	return memcach.get(name)
 

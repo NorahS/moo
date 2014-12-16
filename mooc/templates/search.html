@@ -1,0 +1,9 @@
+{% extends "basic.html"%}
+
+{%block content%}
+<form method="get" action="/search">
+<input type="text" name ="q">
+<button>submit</button><br>
+{{post}}
+</form>
+{%endblock%}

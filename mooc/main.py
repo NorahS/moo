@@ -1,12 +1,15 @@
 import webapp2 ,jinja2,os
 
-import addC 
+import addC,user 
+
 
 class ajax(addC.Handler.Handler):
 	def get(self):
 		self.render("ajax.html")
 	def post(self):
 		self.render("ajax.html")
-application = webapp2.WSGIApplication([('/',ajax),('/us',addC.add)],debug = True) 
+
+PAGE_RE = r'((?:[a-zA-Z0-9_-]+/?)*)'
+application = webapp2.WSGIApplication([('/login',user.Login),('/logout',user.Logout),('/search'+PAGE_RE,addC.Search),('/',ajax),('/signup',user.Signup),('/us',addC.add)],debug = True) 
 
 
