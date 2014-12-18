@@ -1,5 +1,6 @@
 import Handler,usersdb ,userfun
 
+logged = {}
 class Signup(Handler.Handler):
 	def get(self):
 		self.render("signup_form.html")
@@ -8,7 +9,7 @@ class Signup(Handler.Handler):
 		email = self.request.get("email")
 		password = self.request.get("password")
 		conf = self.request.get("conf")
-
+                #i nedd to get the img
 		error=" "
 		user = usersdb.Users.all().filter("username =", username).get()
 		if user :
@@ -25,6 +26,7 @@ class Signup(Handler.Handler):
 
 				user1 =usersdb.Users(username = username, password =password,email = email)
 				user1.put()
+                                logged[cookie] = user1
 				self.redirect("/")
 class Login(Handler.Handler):
 	def get(self):
@@ -41,6 +43,7 @@ class Login(Handler.Handler):
 			if genpass == passwordo:
 				cookie= username +"|"+userfun.cookistr(username)
 				self.response.headers.add_header('Set-Cookie','user=%s'%str(cookie))
+                                logged[cookie] = user
 				self.redirect('/')
 			else :
 				self.render("signup_form.html", error="password or username ain't correct")
@@ -50,7 +53,9 @@ class Login(Handler.Handler):
 
 class Logout(Handler.Handler):
 	def get(self):
+                user =  self.response.headers['user']
 		self.response.headers.add_header('Set-cookie','user=;')
+               logged.del('user')
 		self.redirect('/')		
 
 		

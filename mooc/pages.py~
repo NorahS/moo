@@ -1,0 +1,6 @@
+import Handler, cached
+
+class Page(Handler.Handler):
+    def get(self,ob):
+        ob = cached.lookup(ob[1:])
+        self.render("page.html", ob = ob)
