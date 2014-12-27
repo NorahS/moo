@@ -6,6 +6,8 @@ class Users(db.Model):
 	email = db.StringProperty( required = True)
         courses = list()
         img = db.BlobProperty()
+	rated= list()
+
 
 	
 	

@@ -14,8 +14,10 @@ class add(Handler.Handler):
 	#	date= self.request.get("Date")
 	#	img = self.request.get("img")
 
-		if  cached.cached(name) :		
-		#	course = coursesdb.Courses(key_name=name, Platform = platform,Name=name,School=course1,Rate=int(rate),Instructor= instructor, Level = level, Subject=subject,Date=date, Img=img)
+		if  cached.cached(name) :
+			ratel =[0 for i in range(10)]
+			ratel[int(rate)-1]+=1 		
+		#	course = coursesdb.Courses(key_name=name, Platform = platform,Name=name,School=course1,Rate=ratel,Instructor= instructor, Level = level, Subject=subject,Date=date, Img=img)
                         
                         course = coursesdb.Courses(key_name=name, Platform = platform,Name=name,School=course1)
 

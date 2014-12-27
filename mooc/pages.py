@@ -8,9 +8,18 @@ class Page(Handler.Handler):
         add = self.request.get("add")
         name = self.request.get("Name")
         rate = self.request.get("rate")
-        if add:
-            cookie =self.request.headers['user']
-            user1 =user.logged[cookie]
-            user1.courses.append(name) 
+ 	ob=self.request.get("ob")
+        cookie =self.request.headers['user']
+        user1 =user.logged[cookie]
+	if add:        
+		user1.courses.append(name) 
         # i have to do the rating thing
+	if rate:
+		if name in user1.rated:
+			pass
+		else:
+			user1.rated.append(name)
+			ob = cashed.lookup(ob)
+			ob.rate[int(rate)-1]+=1
 
+		
